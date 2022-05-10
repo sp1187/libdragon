@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['waveformread_1626',['WaveformRead',['../mixer_8h.html#ab0e995bf04880a3e14f689f48fdb2475',1,'mixer.h']]]
+  ['sample_5fptr_5ft_0',['sample_ptr_t',['../samplebuffer_8h.html#aef020c0b192c534ea79e1f94c8c7228f',1,'samplebuffer.h']]]
 ];

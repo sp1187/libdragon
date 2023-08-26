@@ -167,10 +167,19 @@ void display_init( resolution_t res, bitdepth_t bit, uint32_t num_buffers, gamma
             /* Set AA on resample and fetch as well as divot on */
             control |= VI_AA_MODE_RESAMPLE_FETCH_NEEDED | VI_DIVOT_ENABLE;
 
+            /* Anti-aliasing with 32 BPP and high horizontal resolutions is buggy on hardware due to VI bandwidth constraints */
+            if ( bit == DEPTH_32_BPP ) {
+                assertf(res.width <= 320, "FILTERS_RESAMPLE_ANTIALIAS with 32BPP is buggy on hardware for widths > 320");
+            }
             break;
         case FILTERS_RESAMPLE_ANTIALIAS_DEDITHER:
             /* Set AA on resample always and fetch as well as dedither on 
             (only on 16bpp mode, act as FILTERS_RESAMPLE_ANTIALIAS on 32bpp) */
+
+            /* Anti-aliasing with 32 BPP and high horizontal resolutions is buggy on hardware due to VI bandwidth constraints */
+            if ( bit == DEPTH_32_BPP ) {
+                assertf(res.width <= 320, "FILTERS_RESAMPLE_ANTIALIAS_DEDITHER with 32BPP is buggy on hardware for widths > 320");
+            }
 
             /* Enable dither filter in 16bpp mode to give gradients
                a slightly smoother look */

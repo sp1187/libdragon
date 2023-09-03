@@ -1,5 +1,10 @@
 # Libdragon
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/127010686/256988697-8fe1bdcf-a21b-42d0-b383-502eaf048b50.png#gh-dark-mode-only" width="400">
+<img src="https://user-images.githubusercontent.com/127010686/256988620-1167a1e7-6773-4a67-97d4-d251c12ef8ba.png#gh-light-mode-only" width="400">
+</p>
+
 [![Build](https://github.com/DragonMinded/libdragon/actions/workflows/build-toolchain-library-and-roms.yml/badge.svg?branch=trunk)](https://github.com/DragonMinded/libdragon/actions/workflows/build-toolchain-library-and-roms.yml)
 
 ## Welcome to libdragon
@@ -93,18 +98,27 @@ Currently, there are two main libragon versions:
    that will impede existing applications to successfully compile and work
    against a newer libdragon version. We feel this is important because otherwise
    we would fragment the homebrew ecosystem too much, and we would leave a trail
-   of libdragon-based applications that can't be compiled anymore. See also the 
-   wiki for [common hurdles in upgrading libdragon](https://github.com/DragonMinded/libdragon/wiki/Upgrade-troubleshooting).
+   of libdragon-based applications that can't be compiled anymore.
  * The **unstable** version is the one in the `unstable` branch. This is where most
    development happens first. In fact, features are developed, evolved and
    battle-tested here, before the APIs are stabilized and they are finally
    merged on the trunk. Applications that use the unstable branch need to be aware
    that the APIs can break at any time (though we try to avoid *gratuitous* breakage).
 
-## Documentation
+## Upgrading libdragon
+
+If you are upgrade the stable version, check the [ChangeLog](https://github.com/DragonMinded/libdragon/wiki/Stable-branch--Changelog)
+in the wiki to see latest changes that were merged into the stable version of libdragon.
+Also check the wiki page for [common hurdles in upgrading libdragon](https://github.com/DragonMinded/libdragon/wiki/Upgrade-troubleshooting).
+
+If you are upgrading the unstable version, instead, remember that some breaking
+changes are expected. We do not keep track of those though, so you will have
+to check the relevant header files yourself to check what is changed.
+
+## Resources
 
  * [API reference](https://dragonminded.github.io/libdragon/ref/modules.html)
  * [Examples](https://github.com/DragonMinded/libdragon/tree/trunk/examples)
  * [Wiki](https://github.com/DragonMinded/libdragon/wiki) (contains tutorials
    and troubleshooting guides)
-
+ * [Discord n64brew](https://discord.gg/WqFgNWf)

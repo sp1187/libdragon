@@ -137,6 +137,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>debug_assert_func_f</
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Debugging Support. </p>
+<p >Debugging Support (C++)</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a2e2e6b7b3028cbcf2a582ae2fe37ba6b" name="a2e2e6b7b3028cbcf2a582ae2fe37ba6b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2e2e6b7b3028cbcf2a582ae2fe37ba6b">&#9670;&nbsp;</a></span>DEBUG_FEATURE_LOG_USB</h2>
@@ -211,8 +212,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>debug_assert_func_f</
 <p >Logging can be done by writing to stderr. You can use the <a class="el" href="debug_8h.html#aa3e8be416ef1525cfd3230204b56d184" title="Write a message to the debugging channel.">debugf()</a> macro as a simple wrapper over fprintf(stderr) that can be disabled when building the final ROM through the NDEBUG macro.</p>
 <p >Supported development cartridges:</p>
 <ul>
-<li>64drive (rev 1 or 2)</li>
-<li>Everdrive64 (models supporting 3.0.x OSes)</li>
+<li>64Drive HW1 and HW2</li>
+<li>EverDrive-64 V1, V2, V2.5, V3, X7 and X5</li>
+<li>ED64Plus / Super 64</li>
+<li>SC64</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>This feature works only if DEBUG_FEATURE_FILE_SD is also activated.</dd>
 <dd>
@@ -238,8 +241,10 @@ Because of a 64drive firmware bug, the 64drive USB stack will crash if a SD comm
 <p >The SD card must be formatted in either FAT16, FAT32 or ExFat. Long filenames are supported.</p>
 <p >Supported development cartridges:</p>
 <ul>
-<li>64drive (rev 1 or 2)</li>
-<li>Everdrive64 (models supporting 3.0.x OSes) </li>
+<li>64Drive HW1 and HW2</li>
+<li>EverDrive-64 V1, V2, V2.5, V3, X7 and X5</li>
+<li>ED64Plus / Super 64</li>
+<li>SC64 </li>
 </ul>
 
 </div>
@@ -327,7 +332,7 @@ Because of a 64drive firmware bug, the 64drive USB stack will crash if a SD comm
 <b>Value:</b><div class="fragment"><div class="line">        ({ \</div>
 <div class="line">        if (!(expr)) <a class="code hl_function" href="debug_8h.html#a8b30820e0172cfb41a7c3bedc0da987e">debug_assert_func_f</a>(__FILE__, __LINE__, __func__, #expr, msg, ##__VA_ARGS__); \</div>
 <div class="line">    })</div>
-<div class="ttc" id="adebug_8h_html_a8b30820e0172cfb41a7c3bedc0da987e"><div class="ttname"><a href="debug_8h.html#a8b30820e0172cfb41a7c3bedc0da987e">debug_assert_func_f</a></div><div class="ttdeci">void debug_assert_func_f(const char *file, int line, const char *func, const char *failedexpr, const char *msg,...)</div><div class="ttdoc">Underlying implementation function for assert() and assertf.</div><div class="ttdef"><b>Definition:</b> debug.c:548</div></div>
+<div class="ttc" id="adebug_8h_html_a8b30820e0172cfb41a7c3bedc0da987e"><div class="ttname"><a href="debug_8h.html#a8b30820e0172cfb41a7c3bedc0da987e">debug_assert_func_f</a></div><div class="ttdeci">void debug_assert_func_f(const char *file, int line, const char *func, const char *failedexpr, const char *msg,...)</div><div class="ttdoc">Underlying implementation function for assert() and assertf.</div><div class="ttdef"><b>Definition:</b> debug.c:551</div></div>
 </div><!-- fragment -->
 <p><a class="el" href="debug_8h.html#a66673aad3e392c6b58054aebe66fe28e" title="assertf() is like assert() with an attached printf().">assertf()</a> is like assert() with an attached printf(). </p>
 <p ><a class="el" href="debug_8h.html#a66673aad3e392c6b58054aebe66fe28e" title="assertf() is like assert() with an attached printf().">assertf()</a> behaves exactly like assert(), but allows for a better debugging experience because it is possible to attach a formatted string that will be displayed in case the assert triggers.</p>
@@ -409,7 +414,7 @@ Because of a 64drive firmware bug, the 64drive USB stack will crash if a SD comm
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 12 2023 21:44:25 for libdragon by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Sun Sep 3 2023 20:15:34 for libdragon by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>

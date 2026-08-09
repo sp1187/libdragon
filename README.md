@@ -1,8 +1,8 @@
 # Libdragon
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/127010686/256988697-8fe1bdcf-a21b-42d0-b383-502eaf048b50.png#gh-dark-mode-only" width="400">
-<img src="https://user-images.githubusercontent.com/127010686/256988620-1167a1e7-6773-4a67-97d4-d251c12ef8ba.png#gh-light-mode-only" width="400">
+<img src="https://github.com/user-attachments/assets/74c67b9b-ddb7-4527-bc61-86d244205c65#gh-dark-mode-only" id="gh-dark-mode-only" width="400">
+<img src="https://github.com/user-attachments/assets/02586355-e89e-4aac-a208-5ae465287bd7#gh-light-mode-only" id="gh-light-mode-only" width="400">
 </p>
 
 [![Build](https://github.com/DragonMinded/libdragon/actions/workflows/build-toolchain-library-and-roms.yml/badge.svg?branch=trunk)](https://github.com/DragonMinded/libdragon/actions/workflows/build-toolchain-library-and-roms.yml)
@@ -44,6 +44,8 @@ programming and debugging. These are the main features:
      streaming samples from ROM during playback for very low memory usage.
    * Supports WAV files for sound effects
    * Supports streaming of uncompressed or VADPCM-compressed WAV files for music.
+   * Supports streaming using the state-of-the-art [Opus codec](https://github.com/DragonMinded/libdragon/wiki/Opus-decompression),
+     for incredibly high compression ratio at realtime playback rate.
    * Supports playing of XM modules (FastTracker, MilkyTracker, OpenMPT). Can
      playback a 10-channel XM with < 3% CPU and < 10% RSP.
    * Supports playing of YM modules (Arkos Tracker 2)  
@@ -51,7 +53,7 @@ programming and debugging. These are the main features:
   * In-ROM filesystem implementation for assets. Assets can be loaded with
     `fopen("rom://asset.dat")` without having to do complex things to link them in.
   * SD card access (`fopen("sd://asset.dat")`) on all available flashcarts.
-* [Compression](https://github.com/DragonMinded/libdragon/wiki/Compression):
+* [Data compression](https://github.com/DragonMinded/libdragon/wiki/Compression):
    * Asset library for fast, transparent compression support for data files,
      including your custom ones.
    * Automatically integrated in conversion tools for graphics.
@@ -61,7 +63,10 @@ programming and debugging. These are the main features:
    * Optimized decompression routines in MIPS assembly that run in parallel
      with DMA for maximum speed.
    * Support for streaming decompression based on the `fopen()` interface.
-* Debugging: 
+* [Dynamic library support](https://github.com/DragonMinded/libdragon/wiki/DSO-(dynamic-libraries)) 
+  (DSO, sometimes called "overlays") for dynamically loading and unloading part of
+  game code and data. This is implemented using the standard `dlopen()` / `dlsym()`.
+* Debugging:
    * Clear error screens with symbolized stack traces in case of crashes
    * Codebase is filled with assertions, so that you get a nice error screen
      instead of a console lockup.
@@ -70,6 +75,8 @@ programming and debugging. These are the main features:
 * Support for standard N64 controllers and memory paks.
 * Support for saving to flashes and EEPROMs (including a mini EEPROM
   filesystem to simplify serialization of structures).
+* Improved boot using open-source IPL3 bootcode, which boots ROMs up to 5x
+  faster and allows for compressed game code (using libdragon compression library).
 
 The [preview branch](https://github.com/DragonMinded/libdragon/wiki/Preview-branch) features
 many more features:
@@ -88,19 +95,18 @@ many more features:
    * Very simple to use also for render-to-texture scenarios, where
      a movie is played back as part of a 3D scene or as background in
      a 2D game.
- * Improved boot using open-source IPL3 bootcode, which boots ROMs up to 5x
-   faster and allows for compressed game code (using libdragon compression library).
- * Dynamic library support (DSO, sometimes called "overlays") for dynamically
-   loading and unloading part of game code and data. This is implemented using
-   the standard `dlopen()` / `dlsym()`.
- * Support for [Opus audio compression](https://github.com/DragonMinded/libdragon/wiki/Opus-decompression) for ultra-compressed music streaming.
-   * Same state-of-the-art audio algorithm that is currently mainstream on PCs.
-   * Compression ratios around 15:1 for audio files. Around 3-5 minutes of mono
-     audio per Megabyte of ROM, depending on quality.
-   * RSP-accelerated for realtime playback. 18-20% of CPU usage for mono streams,
-     which makes it feasible for menus or not resource-intensive games.
-   * Well suited also for speech at very high compression ratio, would allow for
-     a fully talkie game.
+ * a RDP-accelerated text engine (rdpq_text), with direct conversion from TrueType.
+   * Highly optimized atlas creations for low memory impact and high runtime efficiency
+   * Support for outlining of fonts to improve contrast
+   * Full layout engine (paragraphs, centering, word-wrapping, etc.)
+   * Fully Unicode aware
+ * Initial support for multithreading via custom real-time kernel
+   * Preemptive threads with priority
+   * Mutexes, condition variables, semaphores, queues
+   * Support for C11 atomic variables and thread-local storage
+   * Runtime stack overflow detection
+   * NOTE: at this point, most of libdragon is not thread safe yet, so only
+     basic things can be performed in threads.
 
 and much more. These features will eventually land to trunk, but you can start playing
 with them even today. Go the [preview branch doc](https://github.com/DragonMinded/libdragon/wiki/Preview-branch) for more information.
@@ -142,7 +148,7 @@ the vendors are usually less feature-rich.
 
 ## Libdragon stable vs preview
 
-Currently, there are two main libragon versions: 
+Currently, there are two main libdragon versions: 
 
  * The **stable** version is the one in the `trunk`. Stable means that we strive never
    to break backward compatibility, that is we will never do changes in a way
@@ -168,7 +174,7 @@ to check the relevant header files yourself to check what is changed.
 
 ## Resources
 
- * [API reference](https://dragonminded.github.io/libdragon/ref/modules.html)
+ * [API reference](https://dragonminded.github.io/libdragon/ref/topics.html)
  * [Examples](https://github.com/DragonMinded/libdragon/tree/trunk/examples)
  * [Wiki](https://github.com/DragonMinded/libdragon/wiki) (contains tutorials
    and troubleshooting guides)
